@@ -5,10 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject optionsMenu;
+
     public void PlayGame()
     {
         // Load the first level. Make sure your game scene is added in the Build Settings to be loaded.
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void OpenOptions()
+    {
+        optionsMenu.SetActive(true);
+    }
+
+    public void CloseOptions()
+    {
+        optionsMenu.SetActive(false);
     }
 
     public void QuitGame()
