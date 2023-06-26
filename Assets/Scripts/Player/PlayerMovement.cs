@@ -12,8 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
 
-    State state = State.freefall;
-
+    [SerializeField] State state = State.freefall;
     [SerializeField] Vector2 velocity_limits;
 
 
@@ -25,6 +24,20 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         
+    }
+
+    public void toggle_state()
+    {
+        if(state == State.freefall)
+        {
+            state = State.umbrella;
+            GameManager.got_umbrella();
+        }
+        else
+        {
+            state = State.freefall;
+            GameManager.lost_umbrella();
+        }
     }
 
     // Update is called once per frame

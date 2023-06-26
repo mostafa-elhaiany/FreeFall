@@ -10,14 +10,14 @@ public class objectMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0, GameManager.difficulty);
+        rb.velocity = new Vector2(0, GameManager.current_difficulty);
     }
 
     private void FixedUpdate()
     {
-        if (rb.velocity.y < GameManager.difficulty)
+        if (rb.velocity.y < GameManager.current_difficulty)
         {
-            rb.velocity = new Vector2(rb.velocity.x, GameManager.difficulty);
+            rb.velocity = new Vector2(rb.velocity.x, GameManager.current_difficulty);
         }
         
     }

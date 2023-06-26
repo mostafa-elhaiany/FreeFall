@@ -11,6 +11,7 @@ public class ObjectGenerator : MonoBehaviour
     [SerializeField] Vector2 generation_range; //range of number of item generated
 
 
+    int previous_idx = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,15 +30,20 @@ public class ObjectGenerator : MonoBehaviour
         yield return new WaitForSeconds(timer);
         if (prefablist.Length != 0)
         {
-            int object_idx = 0;
-            if (prefablist.Length > 1)
-            {
-                object_idx = Random.Range(0, prefablist.Length);
-            }
             int num_generated = Random.Range((int)generation_range.x, (int)generation_range.y);
             float x_loc;
+            int object_idx = 0;
             for(int i=0; i < num_generated; i++)
             {
+                if (prefablist.Length > 1)
+                {
+                    object_idx = Random.Range(0, prefablist.Length);
+                    if (object_idx == previous_idx)
+                    {
+                        object_idx = (object_idx + 1) % prefablist.Length;
+                        previous_idx = object_idx;
+                    }
+                }
                 x_loc = Random.Range(bounds.x, bounds.y);
                 Instantiate(prefablist[object_idx], new Vector3(x_loc, transform.position.y, 0), Quaternion.identity);
             }
