@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class pause : MonoBehaviour
 {
+    [SerializeField] GameObject joystick;
     [SerializeField] GameObject pausemenu;
     bool is_paused = false;
 
     void Update()
     {
         pausemenu.SetActive(is_paused);
+        joystick.SetActive(!is_paused);
         Time.timeScale = is_paused ? 0 : 1;
 
         if (Input.GetKeyDown(KeyCode.Escape))
