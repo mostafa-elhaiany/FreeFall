@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    enum State
+    public enum State
     {
         freefall,
         umbrella
     };
 
     Rigidbody2D rb;
+    [SerializeField] GameObject umbrella_gfx;
+    [SerializeField] GameObject freefall_gfx;
 
-    [SerializeField] State state = State.freefall;
+    [SerializeField] public State state { get; private set; } = State.freefall;
     [SerializeField] Vector2 velocity_limits;
 
 
@@ -32,11 +34,16 @@ public class PlayerMovement : MonoBehaviour
         {
             state = State.umbrella;
             GameManager.got_umbrella();
+            umbrella_gfx.SetActive(true);
+            freefall_gfx.SetActive(false);
         }
         else
         {
             state = State.freefall;
             GameManager.lost_umbrella();
+            umbrella_gfx.SetActive(false);
+            freefall_gfx.SetActive(true);
+
         }
     }
 

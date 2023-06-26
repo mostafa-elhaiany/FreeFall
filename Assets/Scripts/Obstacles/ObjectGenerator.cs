@@ -20,7 +20,7 @@ public class ObjectGenerator : MonoBehaviour
 
     IEnumerator wait()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(generate_after);
         StartCoroutine(generate());
     }
 

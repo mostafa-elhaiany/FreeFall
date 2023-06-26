@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bag
   - Umbrella
+  - Bean
   layers:
   - Default
   - TransparentFX

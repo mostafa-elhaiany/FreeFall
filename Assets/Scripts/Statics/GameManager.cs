@@ -9,6 +9,8 @@ public class GameManager
 
     static bool has_umbrella = false;
 
+    public static int score { get; private set; } = 0;
+
     public static void increase_difficulty()
     {
         difficulty = Mathf.Clamp(difficulty += 0.2f, 1, 10);
@@ -16,6 +18,14 @@ public class GameManager
         difficulty = has_umbrella ? damped_difficulty : difficulty;
     }
 
+    public static void got_bean()
+    {
+        score += 1;
+        if (score % 10 == 0)
+        {
+            increase_difficulty();
+        }
+    }
 
 
     public static void got_umbrella()
