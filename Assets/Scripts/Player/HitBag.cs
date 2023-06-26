@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HitBag : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class HitBag : MonoBehaviour
     AudioSource src;
     [SerializeField] AudioClip[] bag_clips;
     [SerializeField] AudioClip[] umbrella_clips;
+    [SerializeField] AudioClip[] bean_clips;
     PlayerMovement movement;
 
     [SerializeField] TMPro.TextMeshProUGUI txt;
@@ -46,6 +48,15 @@ public class HitBag : MonoBehaviour
             {
                 movement.toggle_state();
             }
+            else
+            {
+                GameManager.hitBag();
+                if(GameManager.score<0)
+                {
+                    SceneManager.LoadScene("GameOver");
+                }
+            }
+
         }
         else if (collision.gameObject.CompareTag("Umbrella"))
         {
@@ -60,8 +71,9 @@ public class HitBag : MonoBehaviour
         else if (collision.gameObject.CompareTag("Bean"))
         {
             GameManager.got_bean();
-            txt.text = "Score: " + GameManager.score;
+            play_clip(bean_clips);
             Destroy(collision.gameObject);
         }
+        txt.text = "Score: " + GameManager.score;
     }
 }

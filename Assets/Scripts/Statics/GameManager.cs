@@ -8,9 +8,13 @@ public class GameManager
     static float difficulty = 2;
 
     static bool has_umbrella = false;
-
+    public static int highscore { get; private set; } = 0;
     public static int score { get; private set; } = 0;
 
+    public static void hitBag()
+    {
+        score--;
+    }
     public static void increase_difficulty()
     {
         difficulty = Mathf.Clamp(difficulty += 0.2f, 1, 10);
@@ -21,8 +25,9 @@ public class GameManager
     public static void got_bean()
     {
         score += 1;
-        if (score % 10 == 0)
+        if (score % 5 == 0 && score > highscore)
         {
+            highscore = score;
             increase_difficulty();
         }
     }

@@ -7,6 +7,15 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject optionsMenu;
 
+    [SerializeField] TMPro.TextMeshProUGUI text;
+
+    private void Start()
+    {
+        if(text is not null)
+        {
+            text.text = "High Score: " + GameManager.highscore;
+        }
+    }
     public void PlayGame()
     {
         // Load the first level. Make sure your game scene is added in the Build Settings to be loaded.

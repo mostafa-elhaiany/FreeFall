@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject umbrella_gfx;
     [SerializeField] GameObject freefall_gfx;
 
+    [SerializeField] FloatingJoystick movment_joystick;
     [SerializeField] public State state { get; private set; } = State.freefall;
     [SerializeField] Vector2 velocity_limits;
 
@@ -50,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxis("Horizontal") * speed;
+        movement.x = (Input.GetAxis("Horizontal") + movment_joystick.Horizontal) * speed;
     }
 
     private void FixedUpdate()
